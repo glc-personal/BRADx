@@ -1,4 +1,7 @@
+using Configurations;
+using Configurations.Providers;
 using InstrumentControlService.States;
+using Microsoft.Extensions.Options;
 using StateMachines;
 
 namespace InstrumentControlService;
@@ -7,24 +10,30 @@ public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
     private readonly IFiniteStateMachine _finiteStateMachine;
+    private readonly IAppSettingsConfigProvider _settingsProvider;
+    private readonly IOptionsMonitor<AppSettingsConfigFilesOptions> _options;
 
-    public Worker(ILogger<Worker> logger, IFiniteStateMachine finiteStateMachine)
+    public Worker(ILogger<Worker> logger, 
+        IFiniteStateMachine finiteStateMachine, 
+        IAppSettingsConfigProvider settingsProvider,
+        IOptionsMonitor<AppSettingsConfigFilesOptions> options)
     {
         _logger = logger;
         _finiteStateMachine = finiteStateMachine;
-        
+        _settingsProvider = settingsProvider;
+        _options = options;
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
         // set up the service
-        Setup();
+        await Setup(stoppingToken);
         
         // bring up the service
         BringUp();
         
         // start up the service
         StartUp();
-    }
-
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
         while (!stoppingToken.IsCancellationRequested)
         {
             if (stoppingToken.IsCancellationRequested)
@@ -48,11 +57,20 @@ public class Worker : BackgroundService
         
     }
 
-    private void Setup()
+    private async Task Setup(CancellationToken stoppingToken = default)
     {
-        var baseDir = Directory.GetCurrentDirectory();
-        var configPath = Path.Combine(baseDir, "configs");
-        
+        var currentDir = Directory.GetCurrentDirectory();
+        _logger.LogInformation($"--> {currentDir}");
+        var dirs = Directory.EnumerateDirectories(currentDir);
+        foreach (var dir in dirs)
+            _logger.LogInformation($"--> {dir}");
+        // get the configs from appsettings
+        var controllerConfigs = await _settingsProvider.GetConfigsAsync(_options.CurrentValue, stoppingToken);
+
+        foreach (var kvp in controllerConfigs)
+        {
+            _logger.LogInformation($"Loaded config for {kvp.Key}");
+        }
     }
 
     private void BringUp()

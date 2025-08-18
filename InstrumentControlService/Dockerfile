@@ -18,5 +18,4 @@ RUN dotnet publish "InstrumentControlService.csproj" -c $BUILD_CONFIGURATION -o 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY ./configs ./configs
 ENTRYPOINT ["dotnet", "InstrumentControlService.dll"]
