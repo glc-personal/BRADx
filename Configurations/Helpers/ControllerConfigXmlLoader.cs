@@ -51,6 +51,7 @@ public static class ControllerConfigXmlLoader
 
     private static string RequiredChildText(XElement parent, string childName)
     {
+        if (parent.Element(childName) == null) throw new ConfigParseException($"Missing child <{childName}> under {parent}", parent);
         var child = parent.Element(childName)
             ?? throw new ConfigParseException($"Missing child <{childName}> under <{parent?.Name.LocalName} {parent.Attribute("type")}> under <{parent.Parent.Name.LocalName} {parent.Parent.Attribute("name")}>", parent!);
 
@@ -97,12 +98,16 @@ public static class ControllerConfigXmlLoader
                 ComPort = RequiredChildText(element, "comPort"),
                 BaudRate = OptionalChildInt(element, "baudRate"),
             },
-            "sharedSerial" => new SharedSerialCommunicationConfig
+            "serialBus" => new SerialBusCommunicationConfig
             {
                 ComPort = RequiredChildText(element, "comPort"),
                 Address = RequiredChildInt(element, "address"),
                 BaudRate = OptionalChildInt(element, "baudRate"),
             },
+            "ethernet" => new EthernetCommunicationConfig
+            {
+                IpAddress = RequiredChildText(element, "ipAddress"),
+            }, 
             _ => throw new InvalidOperationException($"Unknown communication type {typeStr}")
         };
     }

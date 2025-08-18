@@ -16,6 +16,7 @@ public class ControllerConfTests
 
     [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.reader.xml")]
     [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.deck.xml")]
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.robot.xml")]
     public void LoadControllerConfigTest(string configXmlPath)
     {
         try
@@ -30,6 +31,7 @@ public class ControllerConfTests
 
     [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.reader.xml")]
     [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.deck.xml")]
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.robot.xml")]
     public void VerifyLoadedControllerConfigRootTest(string configXmlPath)
     {
         try

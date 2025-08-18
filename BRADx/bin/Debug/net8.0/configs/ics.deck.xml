@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<controller name="deck" description="Deck module">
+    <displayName>Deck</displayName>
+    <hardware name="preAmpThermocycler">
+        <displayName>Pre-Amp Thermocycler</displayName>
+        <simulate>true</simulate>
+        <communication type="serial">
+            <comPort>COM5</comPort>
+        </communication>
+        <defaults>
+            <temperature>20</temperature>
+        </defaults>
+    </hardware>
+    <hardware name="chiller">
+        <displayName>Chiller</displayName>
+        <simulate>true</simulate>
+        <communication type="serial">
+            <comPort>COM6</comPort>
+        </communication>
+        <defaults>
+            <temperature>20</temperature>
+        </defaults>
+    </hardware>
+    <hardware name="heaterShaker">
+        <displayName>Heater-Shaker</displayName>
+        <simulate>true</simulate>
+        <communication type="serial">
+            <comPort>COM7</comPort>
+        </communication>
+        <defaults>
+            <temperature>20</temperature>
+            <rpm>0</rpm>
+        </defaults>
+    </hardware>
+    <hardware name="magSeparator">
+        <displayName>Magnet</displayName>
+        <simulate>true</simulate>
+        <communication type="serialBus">
+            <comPort>COM5</comPort>
+            <address>4</address>
+        </communication>
+        <defaults>
+            <position>-300000</position>
+        </defaults>
+    </hardware>
+</controller>
