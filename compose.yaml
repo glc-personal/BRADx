@@ -1,0 +1,24 @@
+﻿services:
+  bradx:
+    image: bradx
+    build:
+      context: .
+      dockerfile: BRADx/Dockerfile
+
+  instrumentschedulerservice:
+    image: instrumentschedulerservice
+    build:
+      context: .
+      dockerfile: InstrumentSchedulerService/Dockerfile
+
+  instrumentcontrolsoftware:
+    image: instrumentcontrolsoftware
+    build:
+      context: .
+      dockerfile: InstrumentControlSoftware/Dockerfile
+
+  instrumentcontrolwebapi:
+    image: instrumentcontrolwebapi
+    build:
+      context: .
+      dockerfile: InstrumentControlWebApi/Dockerfile
