@@ -1,8 +1,4 @@
-using Configurations.Helpers;
-using Controllers;
 using InstrumentControlService.States;
-using Logging.Enums;
-using Reader;
 using StateMachines;
 
 namespace InstrumentControlService;
@@ -10,28 +6,25 @@ namespace InstrumentControlService;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private readonly Logging.ILogger _readerLogger;
     private readonly IFiniteStateMachine _finiteStateMachine;
-    private IController _readerController;
 
-    public Worker(ILogger<Worker> logger, Logging.ILogger readerLogger, IFiniteStateMachine finiteStateMachine)
+    public Worker(ILogger<Worker> logger, IFiniteStateMachine finiteStateMachine)
     {
         _logger = logger;
-        _readerLogger = readerLogger;
         _finiteStateMachine = finiteStateMachine;
         
         // set up the service
         Setup();
-    }
-
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
+        
         // bring up the service
         BringUp();
         
         // start up the service
         StartUp();
-        
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
         while (!stoppingToken.IsCancellationRequested)
         {
             if (stoppingToken.IsCancellationRequested)
@@ -60,16 +53,6 @@ public class Worker : BackgroundService
         var baseDir = Directory.GetCurrentDirectory();
         var configPath = Path.Combine(baseDir, "configs");
         
-        // get all configurations 
-        var configFilePaths = ConfigurationHelper.GetLocalConfigurationFilePaths(configPath);
-        
-        // set up the different module controllers
-        // - reader
-        // - deck
-        // - robot
-        _readerLogger.Log(this, LogLevels.Debug, File.Exists(Path.Combine(configPath, "reader.config")).ToString());
-        var readerControllerFactory = new ReaderControllerFactory(_readerLogger, Path.Combine(configPath, "reader.config"));
-        _readerController = readerControllerFactory.Build("Reader");
     }
 
     private void BringUp()

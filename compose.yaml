@@ -22,3 +22,15 @@
     build:
       context: .
       dockerfile: InstrumentControlWebApi/Dockerfile
+
+  imageanalysisservice:
+    image: imageanalysisservice
+    build:
+      context: .
+      dockerfile: ImageAnalysisService/Dockerfile
+
+  imageanalysiswebapi:
+    image: imageanalysiswebapi
+    build:
+      context: .
+      dockerfile: ImageAnalysisWebApi/Dockerfile

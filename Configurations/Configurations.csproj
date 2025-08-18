@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Communications\Communications.csproj" />
       <ProjectReference Include="..\IO\IO.csproj" />
       <ProjectReference Include="..\Logging\Logging.csproj" />
     </ItemGroup>
