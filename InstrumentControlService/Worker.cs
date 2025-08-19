@@ -77,15 +77,6 @@ public class Worker : BackgroundService
             var controller = controllerFactory.Build(controllerConfig.Value);
             _controllers.Add(controllerConfig.Key, controller);
         }
-
-        //foreach (var kvp in controllerConfigs)
-        //{
-        //    _logger.LogInformation($"Loaded config for {kvp.Key}");
-        //    foreach (var childName in ControllerConfigTool.GetChildrenNames(kvp.Value))
-        //        _logger.LogInformation($"Found child {kvp.Key}.{childName}");
-        //    foreach (var hardwareName in ControllerConfigTool.GetHardwareNames(kvp.Value))
-        //        _logger.LogInformation($"Found hardware {kvp.Key}.{hardwareName}");
-        //}
     }
 
     private void BringUp()

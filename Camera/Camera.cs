@@ -8,13 +8,17 @@ public class Camera : ICamera
     private IHardwareConfig _config;
     private ICommunicationChannel _commChannel;
 
-    public Camera(IHardwareConfig config, ICommunicationChannel commChannel)
+    public string Name => _config.Name;
+
+    public void Configure(IHardwareConfig config)
     {
         _config = config;
-        _commChannel = commChannel;
     }
-    
-    public string Name => _config.Name;
+
+    public void HookUpCommunicationChannel(ICommunicationChannel channel)
+    {
+        _commChannel = channel;
+    }
 
     public void Initialize()
     {

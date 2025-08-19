@@ -1,14 +1,14 @@
 ﻿using Communications;
 using Configurations;
 
-namespace LedBoard;
+namespace PipetteHead;
 
-public class LedBoard : ILedBoard
+public class PipetteHead : IPipetteHead
 {
     private IHardwareConfig _config;
     private ICommunicationChannel _commChannel;
-
-    public string Name => _config.Name;
+    public string Name { get; }
+    
     public void Configure(IHardwareConfig config)
     {
         _config = config;

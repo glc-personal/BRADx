@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Communications\Communications.csproj" />
       <ProjectReference Include="..\Configurations\Configurations.csproj" />
+      <ProjectReference Include="..\Core\Core.csproj" />
     </ItemGroup>
 
 </Project>

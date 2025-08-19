@@ -15,7 +15,9 @@
       <ProjectReference Include="..\LedBoard\LedBoard.csproj" />
       <ProjectReference Include="..\MagSeparator\MagSeparator.csproj" />
       <ProjectReference Include="..\Motor\Motor.csproj" />
+      <ProjectReference Include="..\PipetteHead\PipetteHead.csproj" />
       <ProjectReference Include="..\PreAmpThermocycler\PreAmpThermocycler.csproj" />
+      <ProjectReference Include="..\ValveBoard\ValveBoard.csproj" />
     </ItemGroup>
 
 </Project>

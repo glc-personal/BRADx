@@ -27,9 +27,12 @@ public class HardwareFactory : IHardwareFactory
     public IHardware Build(IHardwareConfig config)
     {
         if (!_registry.TryGetValue(config.Name, out var hardware))
-            _logger.Log(this, LogLevels.Warning, $"Hardware {config.Name} not found");
-            //throw new KeyNotFoundException($"Hardware {config.Name} not found");
+            throw new KeyNotFoundException($"Hardware {config.Name} not found");
         var hw = hardware();
+        hw.Configure(config);
+        var communicationChannelFactory = new CommunicationChannelFactory();
+        var commChannel = communicationChannelFactory.Build(config.Communication, config.Simulate);
+        hw.HookUpCommunicationChannel(commChannel);
         return hw;
     }
 }

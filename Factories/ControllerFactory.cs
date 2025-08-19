@@ -33,40 +33,27 @@ public class ControllerFactory : IControllerFactory
         
         // build the hardware
         var hwConfigsDict = ControllerConfigTool.GetHardwareConfigs(config);
-        var commChannelFactory = new CommunicationChannelFactory();
         var hardwareFactory = new HardwareFactory(_logger)
             .Register("camera", ()
-                => new Camera.Camera(hwConfigsDict["camera"],
-                    commChannelFactory.Build(hwConfigsDict["camera"].Communication,
-                        hwConfigsDict["camera"].Simulate)))
+                => new Camera.Camera())
             .Register("preAmpThermocycler", ()
-                => new PreAmpThermocycler.PreAmpThermocycler(hwConfigsDict["preAmpThermocycler"],
-                    commChannelFactory.Build(hwConfigsDict["preAmpThermocycler"].Communication,
-                        hwConfigsDict["preAmpThermocycler"].Simulate)))
-            .Register("chiller", () 
-                => new Chiller.Chiller(hwConfigsDict["chiller"],
-                    commChannelFactory.Build(hwConfigsDict["chiller"].Communication, 
-                        hwConfigsDict["chiller"].Simulate)))
-            .Register("heaterShaker", () 
-                => new HeaterShaker.HeaterShaker(hwConfigsDict["heaterShaker"],
-                    commChannelFactory.Build(hwConfigsDict["heaterShaker"].Communication, 
-                        hwConfigsDict["heaterShaker"].Simulate)))
+                => new PreAmpThermocycler.PreAmpThermocycler())
+            .Register("chiller", ()
+                => new Chiller.Chiller())
+            .Register("heaterShaker", ()
+                => new HeaterShaker.HeaterShaker())
             .Register("magSeparator", ()
-                => new MagSeparator.MagSeparator(hwConfigsDict["magSeparator"],
-                    commChannelFactory.Build(hwConfigsDict["magSeparator"].Communication, 
-                        hwConfigsDict["magSeparator"].Simulate)))
+                => new MagSeparator.MagSeparator())
             .Register("rotationalMotor", ()
-                => new RotationalMotor(hwConfigsDict["rotationalMotor"],
-                    commChannelFactory.Build(hwConfigsDict["rotationalMotor"].Communication, 
-                        hwConfigsDict["rotationalMotor"].Simulate)))
+                => new RotationalMotor())
             .Register("linearMotor", ()
-                => new RotationalMotor(hwConfigsDict["linearMotor"],
-                    commChannelFactory.Build(hwConfigsDict["linearMotor"].Communication, 
-                        hwConfigsDict["linearMotor"].Simulate)))
-            .Register("ledBoard", () 
-                => new LedBoard.LedBoard(hwConfigsDict["ledBoard"],
-                    commChannelFactory.Build(hwConfigsDict["ledBoard"].Communication, 
-                        hwConfigsDict["ledBoard"].Simulate)));
+                => new LinearMotor())
+            .Register("ledBoard", ()
+                => new LedBoard.LedBoard())
+            .Register("valveBoard", () 
+                => new ValveBoard.ValveBoard())
+            .Register("pipetteHead", ()
+                => new PipetteHead.PipetteHead());
         foreach (var hwConfigKvp in hwConfigsDict)
         {
             var hw = hardwareFactory.Build(hwConfigKvp.Value);

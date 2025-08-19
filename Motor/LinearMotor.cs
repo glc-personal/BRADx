@@ -8,14 +8,17 @@ public class LinearMotor : IMotor
     private IHardwareConfig _config;
     private ICommunicationChannel _commChannel;
 
-    public LinearMotor(IHardwareConfig config, ICommunicationChannel channel)
+    public string Name => _config.Name;
+    public void Configure(IHardwareConfig config)
     {
         _config = config;
+    }
+
+    public void HookUpCommunicationChannel(ICommunicationChannel channel)
+    {
         _commChannel = channel;
     }
-    
-    public string Name => _config.Name;
-    
+
     public void Initialize()
     {
         throw new NotImplementedException();

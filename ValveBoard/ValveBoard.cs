@@ -1,14 +1,14 @@
 ﻿using Communications;
 using Configurations;
 
-namespace LedBoard;
+namespace ValveBoard;
 
-public class LedBoard : ILedBoard
+public class ValveBoard : IValveBoard
 {
     private IHardwareConfig _config;
     private ICommunicationChannel _commChannel;
-
-    public string Name => _config.Name;
+    
+    public string Name { get; }
     public void Configure(IHardwareConfig config)
     {
         _config = config;
