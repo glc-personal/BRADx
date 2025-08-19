@@ -1,6 +1,4 @@
-﻿using Communications.Configuration;
-
-namespace Configurations.Helpers;
+﻿namespace Configurations.Helpers;
 
 public static class ControllerConfigTool
 {
