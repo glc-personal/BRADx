@@ -11,14 +11,15 @@ public class AppSettingsConfigProvider : IAppSettingsConfigProvider
         if (!Directory.Exists(configsPath))
             throw new DirectoryNotFoundException($"Directory {configsPath} not found");
         var prefix = options.Prefix;
-        var paths = Directory.EnumerateFiles(configsPath, $"{prefix}.*.xml", SearchOption.TopDirectoryOnly);
+        var postfix = options.Postfix;
+        var paths = Directory.EnumerateFiles(configsPath, $"{prefix}.*.{postfix}", SearchOption.TopDirectoryOnly);
         
         foreach (var path in paths)
         {
             cancellationToken.ThrowIfCancellationRequested();
             
             var controllerConfig = new ControllerConfig();
-            controllerConfig = ControllerConfigXmlLoader.Load(path);
+            controllerConfig = ControllerConfigLoader.Load(path);
             var controllerName = controllerConfig.Name;
             result.Add(controllerName, controllerConfig);
         }

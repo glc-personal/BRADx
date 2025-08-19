@@ -14,14 +14,14 @@ public class ControllerConfTests
         _controllerConfig = new ControllerConfig();
     }
 
-    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.reader.xml")]
-    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.deck.xml")]
-    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.robot.xml")]
-    public void LoadControllerConfigTest(string configXmlPath)
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\InstrumentControlService\\configs\\ics.deck.config.xml")]
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\InstrumentControlService\\configs\\ics.reader.config.xml")]
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\InstrumentControlService\\configs\\ics.robot.config.xml")]
+    public void LoadControllerConfigTest(string configConfigPath)
     {
         try
         {
-            var controllerConfig = ControllerConfigXmlLoader.Load(configXmlPath);
+            var controllerConfig = ControllerConfigLoader.Load(configConfigPath);
         }
         catch (Exception ex)
         {
@@ -29,21 +29,21 @@ public class ControllerConfTests
         }
     }
 
-    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.reader.xml")]
-    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.deck.xml")]
-    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\BRADx\\bin\\Debug\\net8.0\\configs\\ics.robot.xml")]
-    public void VerifyLoadedControllerConfigRootTest(string configXmlPath)
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\InstrumentControlService\\configs\\ics.deck.config.xml")]
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\InstrumentControlService\\configs\\ics.reader.config.xml")]
+    [TestCase("C:\\Users\\gabri\\RiderProjects\\BRADx\\InstrumentControlService\\configs\\ics.robot.config.xml")]
+    public void VerifyLoadedControllerConfigRootTest(string configConfigPath)
     {
         try
         {
-            var controllerConfig = ControllerConfigXmlLoader.Load(configXmlPath);
+            var controllerConfig = ControllerConfigLoader.Load(configConfigPath);
             
             // verify a few things
             var controllerName = controllerConfig.Name;
             var controllerDescription = controllerConfig.Description;
             var controllerDisplayName = controllerConfig.DisplayName;
             
-            var xmlDoc = XDocument.Load(configXmlPath);
+            var xmlDoc = XDocument.Load(configConfigPath);
             var root = xmlDoc.Root;
             if (root != null)
             {

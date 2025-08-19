@@ -10,14 +10,6 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <!-- Publish BRADx/configs into publish output under configs/ -->
-        <Content Include="../BRADx/configs/**/ics.*.xml"
-                 Link="configs\%(RecursiveDir)%(Filename)%(Extension)"
-                 CopyToOutputDirectory="Always"
-                 CopyToPublishDirectory="Always" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
     </ItemGroup>
 

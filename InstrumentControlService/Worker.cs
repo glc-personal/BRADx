@@ -1,4 +1,5 @@
 using Configurations;
+using Configurations.Helpers;
 using Configurations.Providers;
 using InstrumentControlService.States;
 using Microsoft.Extensions.Options;
@@ -59,17 +60,16 @@ public class Worker : BackgroundService
 
     private async Task Setup(CancellationToken stoppingToken = default)
     {
-        var currentDir = Directory.GetCurrentDirectory();
-        _logger.LogInformation($"--> {currentDir}");
-        var dirs = Directory.EnumerateDirectories(currentDir);
-        foreach (var dir in dirs)
-            _logger.LogInformation($"--> {dir}");
         // get the configs from appsettings
         var controllerConfigs = await _settingsProvider.GetConfigsAsync(_options.CurrentValue, stoppingToken);
 
         foreach (var kvp in controllerConfigs)
         {
             _logger.LogInformation($"Loaded config for {kvp.Key}");
+            foreach (var childName in ControllerConfigTool.GetChildrenNames(kvp.Value))
+                _logger.LogInformation($"Found child {kvp.Key}.{childName}");
+            foreach (var hardwareName in ControllerConfigTool.GetHardwareNames(kvp.Value))
+                _logger.LogInformation($"Found hardware {kvp.Key}.{hardwareName}");
         }
     }
 

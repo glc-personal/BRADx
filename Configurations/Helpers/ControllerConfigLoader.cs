@@ -3,15 +3,15 @@ using Configurations.Exceptions;
 
 namespace Configurations.Helpers;
 
-public static class ControllerConfigXmlLoader
+public static class ControllerConfigLoader
 {
-    public static ControllerConfig Load(string xmlPath)
+    public static ControllerConfig Load(string configPath)
     {
-        var doc = XDocument.Load(xmlPath);
-        var root = doc.Root ?? throw new InvalidOperationException($"Empty xml: {xmlPath}");
+        var doc = XDocument.Load(configPath);
+        var root = doc.Root ?? throw new InvalidOperationException($"Empty config: {configPath}");
 
         if (root.Name.LocalName != "controller")
-            throw new ConfigParseException($"Invalid controller xml, root must be <controller>: {xmlPath}", root);
+            throw new ConfigParseException($"Invalid controller config, root must be <controller>: {configPath}", root);
 
         return ParseController(root);
     }

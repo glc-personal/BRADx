@@ -12,14 +12,6 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
-      <Content Include="bin\Debug\net8.0\configs\ics.deck.xml" />
-      <Content Include="bin\Debug\net8.0\configs\ics.robot.xml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="bin\Debug\net8.0\configs\ics.reader.xml">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 
 </Project>
