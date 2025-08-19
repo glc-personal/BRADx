@@ -62,15 +62,17 @@ public class Worker : BackgroundService
     {
         // get the configs from appsettings
         var controllerConfigs = await _settingsProvider.GetConfigsAsync(_options.CurrentValue, stoppingToken);
+        
+        // build the controllers from the configs
 
-        foreach (var kvp in controllerConfigs)
-        {
-            _logger.LogInformation($"Loaded config for {kvp.Key}");
-            foreach (var childName in ControllerConfigTool.GetChildrenNames(kvp.Value))
-                _logger.LogInformation($"Found child {kvp.Key}.{childName}");
-            foreach (var hardwareName in ControllerConfigTool.GetHardwareNames(kvp.Value))
-                _logger.LogInformation($"Found hardware {kvp.Key}.{hardwareName}");
-        }
+        //foreach (var kvp in controllerConfigs)
+        //{
+        //    _logger.LogInformation($"Loaded config for {kvp.Key}");
+        //    foreach (var childName in ControllerConfigTool.GetChildrenNames(kvp.Value))
+        //        _logger.LogInformation($"Found child {kvp.Key}.{childName}");
+        //    foreach (var hardwareName in ControllerConfigTool.GetHardwareNames(kvp.Value))
+        //        _logger.LogInformation($"Found hardware {kvp.Key}.{hardwareName}");
+        //}
     }
 
     private void BringUp()
