@@ -1,3 +1,4 @@
+using System.Text;
 using Configurations;
 using Configurations.Helpers;
 using Configurations.Providers;
@@ -74,6 +75,7 @@ public class Worker : BackgroundService
         var controllerFactory = new ControllerFactory(_controllerLogger);
         foreach (var controllerConfig in controllerConfigs)
         {
+            _logger.LogInformation($"Setting up {controllerConfig.Key} controller...");
             var controller = controllerFactory.Build(controllerConfig.Value);
             _controllers.Add(controllerConfig.Key, controller);
         }
@@ -82,11 +84,19 @@ public class Worker : BackgroundService
     private void BringUp()
     {
         // send any initial commands to the controller, their children, or their hardware (e.g. set initial temperature of chiller to 25C)
+        foreach (var controller in _controllers)
+        {
+            _logger.LogInformation($"Bringing up {controller.Key} controller...");
+        }
     }
 
     private void BringDown()
     {
         // set any final things like bring up but for when bringing down the service
+        foreach (var controller in _controllers)
+        {
+            _logger.LogInformation($"Bringing down {controller.Key} controller...");
+        }
     }
 
     private void StartUp()
