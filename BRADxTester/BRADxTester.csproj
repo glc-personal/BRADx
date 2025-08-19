@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Configurations\Configurations.csproj" />
+      <ProjectReference Include="..\Extensions\Extensions.csproj" />
       <ProjectReference Include="..\Protocols\Protocols.csproj" />
     </ItemGroup>
 

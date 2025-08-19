@@ -1,15 +1,17 @@
-﻿using Logging;
+﻿using Communications.Configuration;
+using Configurations;
+using Logging;
 
 namespace Controllers;
 
 public class Controller : ControllerBase
 {
-    public Controller(string name, ILogger logger, string configFilePath) : base(name, logger, configFilePath)
+    private readonly ILogger _logger;
+    private readonly IControllerConfig _config;
+    
+    public Controller(ILogger logger, IControllerConfig config) : base(logger, config)
     {
-    }
-
-    public override void Validate()
-    {
-        throw new NotImplementedException();
+        _logger = logger;
+        _config = config;
     }
 }

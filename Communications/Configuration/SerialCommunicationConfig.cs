@@ -1,6 +1,6 @@
 using Communications.Enums;
 
-namespace Configurations;
+namespace Communications.Configuration;
 
 public class SerialCommunicationConfig : ICommunicationConfig
 {

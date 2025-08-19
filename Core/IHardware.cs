@@ -1,4 +1,6 @@
-﻿namespace Core;
+﻿using Communications;
+
+namespace Core;
 
 public interface IHardware
 {

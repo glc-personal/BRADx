@@ -1,8 +1,10 @@
-﻿using Core;
+﻿using Configurations;
+using Core;
 
 namespace Factories;
 
 public interface IHardwareFactory
 {
-    IHardware Build(bool simulateHardware, string name);
+    HardwareFactory Register(string hardwareName, Func<IHardware> hardware);
+    IHardware Build(IHardwareConfig config);
 }

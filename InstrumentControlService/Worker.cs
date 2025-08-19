@@ -1,6 +1,8 @@
 using Configurations;
 using Configurations.Helpers;
 using Configurations.Providers;
+using Controllers;
+using Factories;
 using InstrumentControlService.States;
 using Microsoft.Extensions.Options;
 using StateMachines;
@@ -10,19 +12,24 @@ namespace InstrumentControlService;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
+    private readonly Logging.ILogger _controllerLogger;
     private readonly IFiniteStateMachine _finiteStateMachine;
     private readonly IAppSettingsConfigProvider _settingsProvider;
     private readonly IOptionsMonitor<AppSettingsConfigFilesOptions> _options;
+    private IDictionary<string, IController> _controllers;
 
     public Worker(ILogger<Worker> logger, 
+        Logging.ILogger controllerLogger,
         IFiniteStateMachine finiteStateMachine, 
         IAppSettingsConfigProvider settingsProvider,
         IOptionsMonitor<AppSettingsConfigFilesOptions> options)
     {
         _logger = logger;
+        _controllerLogger = controllerLogger;
         _finiteStateMachine = finiteStateMachine;
         _settingsProvider = settingsProvider;
         _options = options;
+        _controllers = new Dictionary<string, IController>();
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -64,6 +71,12 @@ public class Worker : BackgroundService
         var controllerConfigs = await _settingsProvider.GetConfigsAsync(_options.CurrentValue, stoppingToken);
         
         // build the controllers from the configs
+        var controllerFactory = new ControllerFactory(_controllerLogger);
+        foreach (var controllerConfig in controllerConfigs)
+        {
+            var controller = controllerFactory.Build(controllerConfig.Value);
+            _controllers.Add(controllerConfig.Key, controller);
+        }
 
         //foreach (var kvp in controllerConfigs)
         //{

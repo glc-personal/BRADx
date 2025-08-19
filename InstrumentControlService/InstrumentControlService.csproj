@@ -21,7 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Controllers\Controllers.csproj" />
-      <ProjectReference Include="..\Reader\Reader.csproj" />
+      <ProjectReference Include="..\Factories\Factories.csproj" />
       <ProjectReference Include="..\StateMachines\StateMachines.csproj" />
     </ItemGroup>
 </Project>

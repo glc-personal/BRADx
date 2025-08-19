@@ -1,9 +1,10 @@
-﻿using Controllers;
-using Core;
+﻿using Communications.Configuration;
+using Configurations;
+using Controllers;
 
 namespace Factories;
 
 public interface IControllerFactory
 {
-    ControllerBase Build(string name, ICollection<IController>? controllers, ICollection<IHardware>? hardware);
+    IController Build(IControllerConfig config);
 }

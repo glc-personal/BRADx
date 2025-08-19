@@ -6,6 +6,8 @@ namespace Controllers;
 public interface IController
 {
     string Name { get; }
+    string Description { get; }
+    string DisplayName { get; }
     ICollection<IController> Children { get; }
     ICollection<IHardware> Hardware { get; }
     ICollection<ICommand> Commands { get; }

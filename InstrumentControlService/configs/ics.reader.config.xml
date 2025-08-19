@@ -11,7 +11,7 @@
                 <exposure>600000</exposure>
             </defaults>
         </hardware>
-        <hardware name="filterWheel">
+        <hardware name="rotationalMotor">
             <displayName>Filter Wheel</displayName>
             <simulate>true</simulate>
             <communication type="serialBus">
@@ -37,7 +37,7 @@
     </child>
     <child name="gantry" description="Gantry system">
         <displayName>Gantry</displayName>
-        <hardware name="xAxis">
+        <hardware name="linearMotor">
             <displayName>X-Axis</displayName>
             <simulate>true</simulate>
             <communication type="serialBus">
@@ -48,7 +48,7 @@
                 <position>0</position>
             </defaults>
         </hardware>
-        <hardware name="yAxis">
+        <hardware name="linearMotor">
             <displayName>Y-Axis</displayName>
             <simulate>true</simulate>
             <communication type="serialBus">
@@ -59,7 +59,7 @@
                 <position>0</position>
             </defaults>
         </hardware>
-        <hardware name="zAxis">
+        <hardware name="linearMotor">
             <displayName>Z-Axis</displayName>
             <simulate>true</simulate>
             <communication type="serialBus">

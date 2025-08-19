@@ -7,8 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Camera\Camera.csproj" />
+      <ProjectReference Include="..\Chiller\Chiller.csproj" />
       <ProjectReference Include="..\Controllers\Controllers.csproj" />
       <ProjectReference Include="..\Core\Core.csproj" />
+      <ProjectReference Include="..\HeaterShaker\HeaterShaker.csproj" />
+      <ProjectReference Include="..\LedBoard\LedBoard.csproj" />
+      <ProjectReference Include="..\MagSeparator\MagSeparator.csproj" />
+      <ProjectReference Include="..\Motor\Motor.csproj" />
+      <ProjectReference Include="..\PreAmpThermocycler\PreAmpThermocycler.csproj" />
     </ItemGroup>
 
 </Project>

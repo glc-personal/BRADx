@@ -1,4 +1,5 @@
-﻿using Configurations.Helpers;
+﻿using Communications.Configuration;
+using Configurations.Helpers;
 
 namespace Configurations.Providers;
 

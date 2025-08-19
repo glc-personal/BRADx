@@ -1,4 +1,6 @@
-﻿namespace Configurations.Providers;
+﻿using Communications.Configuration;
+
+namespace Configurations.Providers;
 
 public interface IAppSettingsConfigProvider
 {

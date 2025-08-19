@@ -1,3 +1,5 @@
+using Communications.Configuration;
+
 namespace Configurations;
 
 public interface IHardwareConfig

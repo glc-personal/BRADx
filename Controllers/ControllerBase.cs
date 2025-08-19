@@ -1,23 +1,30 @@
 ﻿using Commands;
+using Communications.Configuration;
 using Configurations;
 using Core;
 using Logging;
 
 namespace Controllers;
 
-public abstract class ControllerBase : ConfigurableBase, IController
+public abstract class ControllerBase : IController
 {
     #region PrivateFields
 
+    private readonly IControllerConfig _config;
     private string _name;
+    private string _description;
+    private string _displayName;
     private ICollection<IController> _children;
     private ICollection<IHardware> _hardware;
     private ICollection<ICommand> _commands;
     #endregion
 
-    public ControllerBase(string name, ILogger logger, string configFilePath) : base(logger, configFilePath)
+    public ControllerBase(ILogger logger, IControllerConfig config)
     {
-        _name = name;
+        _config = config;
+        _name = _config.Name;
+        _description = _config.Description;
+        _displayName = _config.DisplayName;
         _children = new List<IController>();
         _hardware = new List<IHardware>();
         _commands = new List<ICommand>();
@@ -26,6 +33,8 @@ public abstract class ControllerBase : ConfigurableBase, IController
     #region ControllerSection
 
     public string Name => _name;
+    public string Description => _description;
+    public string DisplayName => _displayName;
     public ICollection<IController> Children => _children;
     public ICollection<IHardware> Hardware => _hardware;
     public ICollection<ICommand> Commands => _commands;
