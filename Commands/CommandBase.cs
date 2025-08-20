@@ -2,6 +2,8 @@
 
 public abstract class CommandBase : ICommand
 {
+    public string Name { get; }
+
     public void Execute()
     {
         throw new NotImplementedException();

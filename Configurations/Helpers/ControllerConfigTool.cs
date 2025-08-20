@@ -12,7 +12,7 @@ public static class ControllerConfigTool
 
     public static IDictionary<string, IHardwareConfig> GetHardwareConfigs(IControllerConfig controllerConfig)
     {
-        int i = 1; // increment if there is multiple of the same type of hardware in the controller
+        int i = 1; // increment if there is multiple of the same type of hardware in the controller (we dont  care if their is an incremement because we just need the configs shoved into the hardware Configs dict)
         var hardwareConfigs = new Dictionary<string, IHardwareConfig>();
         foreach (var hardwareConfig in controllerConfig.Hardware)
         {
