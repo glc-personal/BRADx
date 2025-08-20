@@ -21,4 +21,13 @@ public class UsbCommunicationChannel : ICommunicationChannel
 
     public CommunicationTypes Type => CommunicationTypes.Usb;
     public bool Simulated => _simulated;
+    public void Send(object data)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task SendAsync(object data)
+    {
+        throw new NotImplementedException();
+    }
 }

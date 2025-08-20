@@ -57,13 +57,13 @@ public abstract class ControllerBase : IController
     public void ExecuteCommand(ICommand command)
     {
         if (_commands.Contains(command))
-            command.Execute();
+            command.Execute(null);
     }
 
     public async Task ExecuteCommandAsync(ICommand command)
     {
         if (_commands.Contains(command))
-            await command.ExecuteAsync();
+            await command.ExecuteAsync(null);
     }
     
     #endregion

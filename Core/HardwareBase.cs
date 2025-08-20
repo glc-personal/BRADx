@@ -6,12 +6,12 @@ namespace Core;
 
 public abstract class HardwareBase : IHardware
 {
-    private string _name;
     private IHardwareConfig _config;
     private ICommunicationChannel _channel;
     private IDictionary<string, ICommand> _commands = new Dictionary<string, ICommand>();
     
-    public string Name => _name;
+    public string Name => _config.Name;
+    public ICommunicationChannel CommunicationChannel => _channel;
     public IDictionary<string, ICommand> Commands => _commands;
     
     public virtual void Configure(IHardwareConfig config)
@@ -36,7 +36,7 @@ public abstract class HardwareBase : IHardware
     public void AddCommand(ICommand command)
     {
         if (_commands.ContainsKey(command.Name))
-            throw new InvalidOperationException($"Command {command.Name} is already registered for {_name}");
+            throw new InvalidOperationException($"Command {command.Name} is already registered for {Name}");
         _commands.Add(command.Name, command);
     }
 }

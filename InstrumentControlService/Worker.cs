@@ -1,4 +1,5 @@
 using System.Text;
+using Communications;
 using Configurations;
 using Configurations.Helpers;
 using Configurations.Providers;
@@ -6,6 +7,7 @@ using Controllers;
 using Factories;
 using InstrumentControlService.States;
 using Microsoft.Extensions.Options;
+using Motor.Commands;
 using StateMachines;
 
 namespace InstrumentControlService;
@@ -79,6 +81,13 @@ public class Worker : BackgroundService
             var controller = controllerFactory.Build(controllerConfig.Value);
             _controllers.Add(controllerConfig.Key, controller);
         }
+
+        var command = new MotorHomeCommand(0);
+        var children = _controllers["reader"].Children;
+        var gantry = children.FirstOrDefault(c => c.Name == "gantry");
+        var hw = gantry.Hardware.FirstOrDefault(c => c.Name == "linearMotor");
+        _logger.LogInformation(command.Name);
+        command.Execute(hw.CommunicationChannel);
     }
 
     private void BringUp()

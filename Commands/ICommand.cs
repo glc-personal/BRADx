@@ -1,8 +1,11 @@
-﻿namespace Commands;
+﻿using Communications;
+
+namespace Commands;
 
 public interface ICommand
 {
     public string Name { get; }
-    void Execute();
-    Task ExecuteAsync();
+    public string Description { get; }
+    void Execute(ICommunicationChannel? channel);
+    Task ExecuteAsync(ICommunicationChannel? channel);
 }

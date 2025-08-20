@@ -21,4 +21,18 @@ public class SerialBusCommunicationChannel : ICommunicationChannel
 
     public CommunicationTypes Type => CommunicationTypes.SerialBus;
     public bool Simulated => _simulated;
+    public void Send(object data)
+    {
+        if (_simulated)
+            Console.WriteLine($"Sending data to serial bus: {data}");
+        else
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public Task SendAsync(object data)
+    {
+        throw new NotImplementedException();
+    }
 }
