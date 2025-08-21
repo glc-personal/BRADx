@@ -33,7 +33,7 @@ public abstract class HardwareBase : IHardware
     {
     }
 
-    public void AddCommand(ICommand command)
+    public virtual void AddCommand(ICommand command)
     {
         if (_commands.ContainsKey(command.Name))
             throw new InvalidOperationException($"Command {command.Name} is already registered for {Name}");

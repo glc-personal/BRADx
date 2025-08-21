@@ -82,12 +82,6 @@ public class Worker : BackgroundService
             _controllers.Add(controllerConfig.Key, controller);
         }
 
-        var command = new MotorHomeCommand(0);
-        var children = _controllers["reader"].Children;
-        var gantry = children.FirstOrDefault(c => c.Name == "gantry");
-        var hw = gantry.Hardware.FirstOrDefault(c => c.Name == "linearMotor");
-        _logger.LogInformation(command.Name);
-        command.Execute(hw.CommunicationChannel);
     }
 
     private void BringUp()
