@@ -1,5 +1,5 @@
-﻿using Commands;
-using Communications.Configuration;
+﻿using System.Collections;
+using Commands;
 using Configurations;
 using Core;
 using Logging;
@@ -66,7 +66,24 @@ public abstract class ControllerBase : IController
         if (_commands.Contains(command))
             await command.ExecuteAsync(null, new Payload());
     }
-    
+
+    public void BringUp()
+    {
+        foreach (var child in _children)
+            child.BringUp();
+        foreach (var hardware in _hardware)
+            hardware.BringUp();
+    }
+
     #endregion
 
+    public IEnumerator<IController> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }

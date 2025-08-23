@@ -1,10 +1,12 @@
-﻿using Communications.Configuration;
+﻿using System.IO.Ports;
+using Communications.Configuration;
 using Communications.Enums;
 
 namespace Communications;
 
 public class SerialBusCommunicationChannel : ICommunicationChannel
 {
+    private SerialPort _serialPort;
     private SerialBusCommunicationConfig _config;
     private bool _simulated;
 
@@ -34,5 +36,25 @@ public class SerialBusCommunicationChannel : ICommunicationChannel
     public Task SendAsync(object data)
     {
         throw new NotImplementedException();
+    }
+
+    public void Connect()
+    {
+        if (_simulated)
+            return;
+        try
+        {
+            _serialPort = new SerialPort(_config.ComPort, _config.BaudRate);
+            _serialPort.Open();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    public void Disconnect()
+    {
+        _serialPort.Close();
     }
 }

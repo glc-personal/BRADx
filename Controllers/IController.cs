@@ -3,7 +3,7 @@ using Core;
 
 namespace Controllers;
 
-public interface IController
+public interface IController : IEnumerable<IController>
 {
     string Name { get; }
     string Description { get; }
@@ -16,4 +16,5 @@ public interface IController
     void AddCommand(ICommand command);
     void ExecuteCommand(ICommand command);
     Task ExecuteCommandAsync(ICommand command);
+    void BringUp();
 }

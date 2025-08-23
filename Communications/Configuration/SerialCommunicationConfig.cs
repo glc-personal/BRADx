@@ -6,5 +6,5 @@ public class SerialCommunicationConfig : ICommunicationConfig
 {
     public CommunicationTypes Type => CommunicationTypes.Serial;
     public string ComPort { get; init; } = "";
-    public int? BaudRate { get; init; }
+    public int BaudRate { get; init; }
 }

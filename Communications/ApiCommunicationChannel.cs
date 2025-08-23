@@ -30,4 +30,14 @@ public class ApiCommunicationChannel : ICommunicationChannel
     {
         throw new NotImplementedException();
     }
+
+    public void Connect()
+    {
+        return;
+    }
+
+    public void Disconnect()
+    {
+        return;
+    }
 }

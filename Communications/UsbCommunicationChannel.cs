@@ -30,4 +30,14 @@ public class UsbCommunicationChannel : ICommunicationChannel
     {
         throw new NotImplementedException();
     }
+
+    public void Connect()
+    {
+        return;
+    }
+
+    public void Disconnect()
+    {
+        return;
+    }
 }

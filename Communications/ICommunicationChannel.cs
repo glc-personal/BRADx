@@ -8,4 +8,6 @@ public interface ICommunicationChannel : IDisposable
     bool Simulated { get; }
     void Send(Object data);
     Task SendAsync(Object data);
+    void Connect();
+    void Disconnect();
 }

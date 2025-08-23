@@ -6,6 +6,7 @@
         <simulate>true</simulate>
         <communication type="serial">
             <comPort>COM5</comPort>
+            <baudRate>9600</baudRate>
         </communication>
         <defaults>
             <temperature>20</temperature>
@@ -16,6 +17,7 @@
         <simulate>true</simulate>
         <communication type="serial">
             <comPort>COM6</comPort>
+            <baudRate>9600</baudRate>
         </communication>
         <defaults>
             <temperature>20</temperature>
@@ -26,6 +28,7 @@
         <simulate>true</simulate>
         <communication type="serial">
             <comPort>COM7</comPort>
+            <baudRate>9600</baudRate>
         </communication>
         <defaults>
             <temperature>20</temperature>
@@ -37,6 +40,7 @@
         <simulate>true</simulate>
         <communication type="serialBus">
             <comPort>COM5</comPort>
+            <baudRate>9600</baudRate>
             <address>4</address>
         </communication>
         <defaults>

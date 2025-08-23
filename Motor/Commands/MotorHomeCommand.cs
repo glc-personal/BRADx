@@ -2,7 +2,6 @@ using Commands;
 using Communications;
 using Motor.Payloads;
 using Payloads;
-using Payloads.Helpers;
 
 namespace Motor.Commands;
 
@@ -26,5 +25,4 @@ public class MotorHomeCommand : CommandBase
             Address = (int)payload.Data["address"]
         };
     }
-
 }

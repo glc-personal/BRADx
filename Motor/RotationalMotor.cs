@@ -2,6 +2,6 @@
 
 namespace Motor;
 
-public class RotationalMotor : HardwareBase, IMotor
+public class RotationalMotor : MotorBase
 {
 }

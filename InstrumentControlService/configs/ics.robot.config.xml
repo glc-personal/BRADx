@@ -8,6 +8,7 @@
             <simulate>true</simulate>
             <communication type="serialBus">
                 <comPort>COM4</comPort>
+                <baudRate>9600</baudRate>
                 <address>3</address>
             </communication>
             <defaults>
@@ -19,6 +20,7 @@
             <simulate>true</simulate>
             <communication type="serialBus">
                 <comPort>COM4</comPort>
+                <baudRate>9600</baudRate>
                 <address>4</address>
             </communication>
             <defaults>
@@ -30,6 +32,7 @@
             <simulate>true</simulate>
             <communication type="serialBus">
                 <comPort>COM4</comPort>
+                <baudRate>9600</baudRate>
                 <address>5</address>
             </communication>
             <defaults>
@@ -54,6 +57,7 @@
             <simulate>true</simulate>
             <communication type="serialBus">
                 <comPort>COM4</comPort>
+                <baudRate>9600</baudRate>
                 <address>8</address>
             </communication>
             <defaults>
@@ -65,6 +69,7 @@
             <simulate>true</simulate>
             <communication type="serialBus">
                 <comPort>COM4</comPort>
+                <baudRate>9600</baudRate>
                 <address>9</address>
             </communication>
             <defaults>

@@ -90,6 +90,11 @@ public class Worker : BackgroundService
         foreach (var controller in _controllers)
         {
             _logger.LogInformation($"Bringing up {controller.Key} controller...");
+            foreach (var childController in controller.Value.Children)
+                childController.BringUp();
+
+            foreach (var hw in controller.Value.Hardware)
+                hw.BringUp();
         }
     }
 

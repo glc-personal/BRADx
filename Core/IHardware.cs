@@ -11,7 +11,6 @@ public interface IHardware
     IDictionary<string, ICommand> Commands { get; }
     void Configure(IHardwareConfig config);
     void HookUpCommunicationChannel(ICommunicationChannel channel);
-    void Initialize();
     void BringUp();
     void AddCommand(ICommand command);
 }

@@ -2,6 +2,6 @@
 
 namespace Motor;
 
-public class LinearMotor : HardwareBase, IMotor
+public class LinearMotor : MotorBase
 {
 }

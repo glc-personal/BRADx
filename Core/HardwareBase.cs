@@ -24,13 +24,9 @@ public abstract class HardwareBase : IHardware
         _channel = channel;
     }
 
-    public virtual void Initialize()
-    {
-        throw new NotImplementedException();
-    }
-
     public virtual void BringUp()
     {
+        _channel.Connect();
     }
 
     public virtual void AddCommand(ICommand command)

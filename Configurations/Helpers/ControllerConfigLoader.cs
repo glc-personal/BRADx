@@ -97,13 +97,13 @@ public static class ControllerConfigLoader
             "serial" => new SerialCommunicationConfig
             {
                 ComPort = RequiredChildText(element, "comPort"),
-                BaudRate = OptionalChildInt(element, "baudRate"),
+                BaudRate = RequiredChildInt(element, "baudRate"),
             },
             "serialBus" => new SerialBusCommunicationConfig
             {
                 ComPort = RequiredChildText(element, "comPort"),
                 Address = RequiredChildInt(element, "address"),
-                BaudRate = OptionalChildInt(element, "baudRate"),
+                BaudRate = RequiredChildInt(element, "baudRate"),
             },
             "ethernet" => new EthernetCommunicationConfig
             {
