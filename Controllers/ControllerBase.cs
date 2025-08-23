@@ -3,6 +3,7 @@ using Communications.Configuration;
 using Configurations;
 using Core;
 using Logging;
+using Payloads;
 
 namespace Controllers;
 
@@ -57,13 +58,13 @@ public abstract class ControllerBase : IController
     public void ExecuteCommand(ICommand command)
     {
         if (_commands.Contains(command))
-            command.Execute(null);
+            command.Execute(null, new Payload());
     }
 
     public async Task ExecuteCommandAsync(ICommand command)
     {
         if (_commands.Contains(command))
-            await command.ExecuteAsync(null);
+            await command.ExecuteAsync(null, new Payload());
     }
     
     #endregion

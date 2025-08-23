@@ -1,19 +1,22 @@
 ﻿using Communications;
+using Payloads;
+using Payloads.Helpers;
 
 namespace Commands;
 
 public abstract class CommandBase : ICommand
 {
     public string Name => this.GetType().Name;
-    public virtual string Description { get; }
-
-    public virtual void Execute(ICommunicationChannel? channel)
+    public abstract string Description { get; }
+    public virtual void Execute(ICommunicationChannel? channel, Payload payload)
     {
         throw new NotImplementedException($"{Name}.Execute() is not implemented");
     }
 
-    public Task ExecuteAsync(ICommunicationChannel? channel)
+    public virtual Task ExecuteAsync(ICommunicationChannel? channel, Payload payload)
     {
         throw new NotImplementedException($"{Name}.ExecuteAsync() is not implemented");
     }
+    
+    public abstract void ConvertPayloadToCommandPayload(Payload payload);
 }

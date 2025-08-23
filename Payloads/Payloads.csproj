@@ -6,9 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Communications\Communications.csproj" />
-      <ProjectReference Include="..\Payloads\Payloads.csproj" />
-    </ItemGroup>
-
 </Project>

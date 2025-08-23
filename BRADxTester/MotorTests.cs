@@ -3,6 +3,7 @@ using Communications.Configuration;
 using Configurations;
 using Motor;
 using Motor.Commands;
+using Payloads;
 
 namespace BRADxTester;
 
@@ -35,7 +36,7 @@ public class MotorTests
         _linearMotor.HookUpCommunicationChannel(_channel);
         
         // add commands available to the motor
-        _linearMotor.AddCommand(new MotorHomeCommand(_channelConfig.Address));
+        _linearMotor.AddCommand(new MotorHomeCommand());
         _linearMotor.AddCommand(new MotorMoveCommand());
     }
 
@@ -45,7 +46,14 @@ public class MotorTests
         try
         {
             var command = _linearMotor.Commands[nameof(MotorHomeCommand)];
-            command.Execute(_linearMotor.CommunicationChannel);
+            command.Execute(_linearMotor.CommunicationChannel, new Payload
+            {
+                Data = new Dictionary<string, object>
+                {
+                    ["address"] = 0,
+                    ["command"] = "home"
+                }
+            });
         }
         catch (Exception ex)
         {
@@ -59,7 +67,15 @@ public class MotorTests
         try
         {
             var command = _linearMotor.Commands[nameof(MotorMoveCommand)];
-            command.Execute(_linearMotor.CommunicationChannel);
+            command.Execute(_linearMotor.CommunicationChannel, new Payload
+            {
+                Data = new Dictionary<string, object>
+                {
+                    ["address"] = 0,
+                    ["position"] = -300000,
+                    ["speed"] = 100000,
+                }
+            });
         }
         catch (Exception ex)
         {
